@@ -1,5 +1,4 @@
 import React from 'react'
-import './App.css'
 
 var Note = React.createClass({
   getInitialState() {
