@@ -1,19 +1,28 @@
 import React from 'react'
 
-var Note = React.createClass({
-  getInitialState() {
-    return {editing: false}
-  },
+class Note extends React.Component {
+
+  constructor(props) {
+      super(props);
+      this.state = {editing: false};
+      this.edit = this.edit.bind(this);
+      this.save = this.save.bind(this);
+      this.remove = this.remove.bind(this);
+  }
+
   edit() {
     this.setState({editing: true})
-  },
+  }
+
   save() {
-    this.props.onChange(this.refs.newText.value, this.props.id)
+    this.props.onChange(this.refs.newText.value, this.props.id)     // whenever onChange is fired, attach newText and id values
     this.setState({editing: false})
-  },
+  }
+
   remove() {
     this.props.onRemove(this.props.id)
-  },
+  }
+
   renderForm() {
     return (
       <div className="note">
@@ -23,7 +32,7 @@ var Note = React.createClass({
         <button onClick={this.save}>SAVE</button>
       </div>
     )
-  },
+  }
 
   renderDisplay() {
     return (
@@ -35,7 +44,7 @@ var Note = React.createClass({
         </span>
       </div>
     )
-  },
+  }
 
   render() {
     if(this.state.editing) {
@@ -44,6 +53,6 @@ var Note = React.createClass({
       return this.renderDisplay()
     }
   }
-})
+}
 
 export default Note
